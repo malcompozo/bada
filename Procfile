@@ -1,0 +1,1 @@
+web: gunicorn badaRest.wsgi --log-file -
