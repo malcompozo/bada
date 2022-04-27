@@ -1,7 +1,6 @@
 from bada_app.models import Contact,Event,Slider
 from bada_app.api.serializers import ContactSerializer,EventSerializer, SliderSerializer
 from rest_framework.response import Response
-#from rest_framework.decorators import api_view
 from rest_framework import status 
 from rest_framework.views import APIView
 from django.core.mail import EmailMessage
