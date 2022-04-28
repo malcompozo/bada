@@ -36,7 +36,7 @@ class ContactAV(APIView):
             # email.subject = 'Mensaje de ' + de_serializer.validated_data['name']
             # email.body = de_serializer.validated_data['message']
             # email.to = [email]
-            # de_serializer.save()
+            de_serializer.save()
             return Response(de_serializer.data, status=status.HTTP_201_CREATED)
         return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
