@@ -14,8 +14,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(+kitdc@)qd3bi-#bqw&0%35$-#k^+c-c7l(i+b*my92t!@pz@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -78,21 +78,11 @@ WSGI_APPLICATION = 'badaRest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# BASE DE DATOS LOCAL
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'USER': 'postgres',
-        'NAME': 'bada',
-        'PASSWORD': '17806110mal',
-        'HOTS': 'localhost',
-    }
-} 
-
 # BASE DE DATOS CLOUD
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
+#DATABASES['default'].update(db_from_env)
+DATABASES = { 'default': dj_database_url.config() }
 
 REST_FRAMEWORK = {
     #solo tendra acceso los usuarios autenticados en API
@@ -161,3 +151,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+try:
+    from .local_settings import DATABASES, DEBUG
+except ImportError as e:
+    print ('Error: ',e.msg)
