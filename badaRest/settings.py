@@ -87,7 +87,6 @@ WSGI_APPLICATION = 'badaRest.wsgi.application'
 # BASE DE DATOS CLOUD
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
-#DATABASES['default'].update(db_from_env)
 DATABASES = { 'default': dj_database_url.config() }
 
 REST_FRAMEWORK = {
@@ -164,7 +163,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 try:
-    from .local_settings import DATABASES, DEBUG, EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
+    from .local_settings import DATABASES, DEBUG
 except ImportError as e:
     print ('Error: ',e.msg)
 
