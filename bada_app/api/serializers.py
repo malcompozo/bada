@@ -1,11 +1,7 @@
 from rest_framework import serializers
-from bada_app.models import Contact,Event,Slider
+from bada_app.models import Contact,Event
 
-#############################  SLIDER  #############################
-class SliderSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Slider
-        fields = "__all__"
+#############################    #############################
 
 #############################  CONTACT  #############################
 class ContactSerializer(serializers.ModelSerializer):

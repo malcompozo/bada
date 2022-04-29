@@ -1,5 +1,5 @@
-from bada_app.models import Contact,Event,Slider
-from bada_app.api.serializers import ContactSerializer,EventSerializer, SliderSerializer
+from bada_app.models import Contact,Event
+from bada_app.api.serializers import ContactSerializer,EventSerializer
 from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework.views import APIView
@@ -8,19 +8,8 @@ from django.core.mail import EmailMessage
 #############################  GENERIC METHODS #############################
 
 
-#############################  SLIDER  #############################
-class SliderAV(APIView):
-    def get(self, request):
-        slider = Slider.objects.all()
-        serializer = SliderSerializer(slider, many=True)
-        return Response(serializer.data)
+#############################    #############################
 
-    def post(self, request):
-        de_serializer = SliderSerializer(data=request.data)
-        if de_serializer.is_valid():
-            de_serializer.save()
-            return Response(de_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #############################  CONTACT  #############################
 class ContactAV(APIView):
