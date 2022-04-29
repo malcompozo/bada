@@ -56,6 +56,10 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost',
+)
+
 ROOT_URLCONF = 'badaRest.urls'
 
 TEMPLATES = [
