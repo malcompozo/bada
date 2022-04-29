@@ -166,6 +166,7 @@ except ImportError as e:
     print ('Error: ',e.msg)
 
 # ENVIO EMAIL
+
 EMAIL_HOST = 'smtp.mailtrap.io'
 EMAIL_HOST_USER = '3c19d2e500b141'
 EMAIL_HOST_PASSWORD = 'd0db8029852955'
