@@ -145,6 +145,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+#media config
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
@@ -154,6 +158,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 try:
-    from .local_settings import DATABASES, DEBUG
+    from .local_settings import DATABASES, DEBUG, EMAIL_HOST, EMAIL_PORT, EMAIL_HOST_USER, EMAIL_HOST_PASSWORD
 except ImportError as e:
     print ('Error: ',e.msg)
+
+# ENVIO EMAIL
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER = '3c19d2e500b141'
+EMAIL_HOST_PASSWORD = 'd0db8029852955'
+EMAIL_PORT = '2525'

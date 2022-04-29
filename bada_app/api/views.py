@@ -32,13 +32,25 @@ class ContactAV(APIView):
     def post(self, request):
         de_serializer = ContactSerializer(data=request.data)
         if de_serializer.is_valid():
-            # email = EmailMessage()
-            # email.subject = 'Mensaje de ' + de_serializer.validated_data['name']
-            # email.body = de_serializer.validated_data['message']
-            # email.to = [email]
-            de_serializer.save()
-            return Response(de_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+            # CAPTURANDO DATA CONTACTO
+            name = de_serializer.name
+            email = de_serializer.email
+            content = de_serializer.content
+            # ENVIAMOS EMAIL
+            email = EmailMessage(
+                "Nuevo mensaje de contacto",
+                "De: " + name + "\n" + "Email: " + email + "\n" + "Mensaje: " + content,
+                "no-contestar@badaeventos.cl",
+                ["eventos@bada.cl"],
+                reply_to=[email]
+            )
+            try:
+                email.send()
+                de_serializer.save()
+                return Response(de_serializer.data, status=status.HTTP_201_CREATED)
+            except:
+                return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 #############################  EVENT  #############################
