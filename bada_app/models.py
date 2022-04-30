@@ -27,4 +27,4 @@ class Estado_evento(models.Model):
         verbose_name_plural = "Consultar evento"
 
     def __str__(self):
-        return self.tipo_evento
+        return self.tipo_evento, self.estado
