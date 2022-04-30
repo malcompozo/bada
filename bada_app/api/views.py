@@ -1,4 +1,4 @@
-from bada_app.models import Contact,EstadoEvento
+from bada_app.models import Contact,Estado_evento
 from bada_app.api.serializers import ContactSerializer,EventSerializer
 from rest_framework.response import Response
 from rest_framework import status 
@@ -46,8 +46,8 @@ class ContactAV(APIView):
 class EventgetAV(APIView):
     def get(self, request, pk):
         try:
-            event = EstadoEvento.objects.get(pk=pk)
-        except EstadoEvento.DoesNotExist:
+            event = Estado_evento.objects.get(pk=pk)
+        except Estado_evento.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         serializer = EventSerializer(event)
@@ -57,7 +57,7 @@ class EventgetAV(APIView):
 class EventAV(APIView):
 
     def get(self, request):
-        events = EstadoEvento.objects.all()
+        events = Estado_evento.objects.all()
         serializer = EventSerializer(events, many=True)
         return Response(serializer.data)
 

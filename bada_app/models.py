@@ -11,7 +11,7 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
-class EstadoEvento(models.Model):
+class Estado_evento(models.Model):
     estado = models.CharField(max_length=100)
     fecha = models.DateTimeField(auto_now_add=True)
     recinto = models.CharField(max_length=50)

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from bada_app.models import Contact,EstadoEvento
+from bada_app.models import Contact,Estado_evento
 
 #############################    #############################
 
@@ -12,5 +12,5 @@ class ContactSerializer(serializers.ModelSerializer):
 #############################  EVENT  #############################
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
-        model = EstadoEvento
+        model = Estado_evento
         fields = "__all__"
