@@ -11,15 +11,20 @@ class Contact(models.Model):
     def __str__(self):
         return self.name
 
-class Event(models.Model):
-    title = models.CharField(max_length=50)
-    salon = models.CharField(max_length=50)
+class EstadoEvento(models.Model):
+    estado = models.CharField(max_length=100)
+    fecha = models.DateTimeField(auto_now_add=True)
+    recinto = models.CharField(max_length=50)
+    banqueteria = models.CharField(max_length=50)
+    animacion = models.CharField(max_length=50)
+    tipo_evento = models.CharField(max_length=50)
     capacity = models.IntegerField(default=50)
-    description = models.TextField(max_length=500)
+    iluminacion = models.CharField(max_length=50)
+    fotografo = models.CharField(max_length=50)
 
     class Meta:
         verbose_name = "Consultar evento"
         verbose_name_plural = "Consultar evento"
 
     def __str__(self):
-        return self.title
+        return self.tipo_evento
