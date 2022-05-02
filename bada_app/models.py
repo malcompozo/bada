@@ -3,10 +3,12 @@ class Contact(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     message = models.CharField(max_length=250)
+    fecha = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         verbose_name = "Contacto"
         verbose_name_plural = "Contacto"
+        ordering = ['-fecha']
 
     def __str__(self):
         return self.name
@@ -25,6 +27,8 @@ class Estado_evento(models.Model):
     class Meta:
         verbose_name = "Consultar evento"
         verbose_name_plural = "Consultar evento"
+        ordering = ['-fecha']
 
     def __str__(self):
-        return '{}  ----  {}'.format(self.tipo_evento, self.estado)
+        #return '{}  ----  {}'.format(self.tipo_evento, self.estado)
+        return self.tipo_evento
