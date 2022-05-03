@@ -48,10 +48,22 @@ class EventgetAV(APIView):
         try:
             event = Estado_evento.objects.get(pk=pk)
         except Estado_evento.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response({'ERROR ':' Evento no encontrado'}, status=status.HTTP_404_NOT_FOUND)
 
         serializer = EventSerializer(event)
         return Response(serializer.data)
+    
+    def put(self, request, pk):
+        try:
+            event = Estado_evento.objects.get(pk=pk)
+        except Estado_evento.DoesNotExist:
+            return Response({'ERROR ':' Evento no encontrado'}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = EventSerializer(event, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class EventAV(APIView):
