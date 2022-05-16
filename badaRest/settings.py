@@ -83,9 +83,9 @@ REST_FRAMEWORK = {
     # ]
 
     #devuelve toda data en formato JSON
-    # 'DEFAULT_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.JSONRenderer', 
-    # ) 
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer', 
+    ) 
 }
 
 
