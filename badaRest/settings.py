@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'bada_app',
     'corsheaders',
     'rest_framework',
-    #'rest_framework.authtoken', (solo si se necesita autenticacion REST)
+    'rest_framework.authtoken', 
 ]
 
 MIDDLEWARE = [
@@ -76,17 +76,15 @@ db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES = { 'default': dj_database_url.config() }
 
 REST_FRAMEWORK = {
-    #solo tendra acceso los usuarios autenticados en API
-    # 'DEFAULT_PERMISSION_CLASSES': [
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ],
 
     # token de autenticacion para el front
-    #'DEFAULT_AUTHENTICATION_CLASSES': [
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
     #    'rest_framework.authentication.TokenAuthentication',
-    #]
+    # ]
+
+    #devuelve toda data en formato JSON
     'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer', #devuelve toda data en formato JSON
+        'rest_framework.renderers.JSONRenderer', 
     ) 
 }
 
