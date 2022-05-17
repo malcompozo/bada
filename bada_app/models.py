@@ -20,8 +20,8 @@ class EventBooking(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name="fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Ultima edición")
     class Meta:
-        verbose_name = "Evento"
-        verbose_name_plural = "Eventos"
+        verbose_name = "Evento reservado"
+        verbose_name_plural = "Eventos reservados"
         ordering = ['-created']
 
     def __str__(self):
@@ -37,7 +37,7 @@ class Customer(models.Model):
     phone = models.CharField(max_length=100, verbose_name="Teléfono")
     address = models.CharField(max_length=100, verbose_name="Dirección")
     city = models.CharField(max_length=100, verbose_name="Ciudad")
-    event = models.ForeignKey(EventBooking, related_name="evento", on_delete=models.CASCADE)
+    event = models.ForeignKey(EventBooking, verbose_name="Evento", on_delete=models.CASCADE)
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
 
     class Meta:
