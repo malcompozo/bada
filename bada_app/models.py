@@ -2,21 +2,6 @@ from django.db import models
 import random
 
 
-############################### CONTACT ###############################
-class Contact(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Nombre')
-    email = models.EmailField(max_length=100, verbose_name='Email')
-    message = models.CharField(max_length=250, verbose_name='Mensaje')
-    created = models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')
-
-    class Meta:
-        verbose_name = "Contacto"
-        verbose_name_plural = "Contacto"
-        ordering = ['-created']
-
-    def __str__(self):
-        return self.name
-
 ############################### EVENT BOOKING ###############################
 
 class EventBooking(models.Model):
@@ -64,64 +49,4 @@ class Customer(models.Model):
         return self.name
 
 
-##################################  EVENTOS PREDEFINIDOS #################################
-class Banquetry(models.Model):
-    items = models.CharField(max_length=100, verbose_name="Item")
-    value = models.PositiveIntegerField(verbose_name="Valor")
-
-    class Meta:
-        verbose_name = "Banqueteria"
-        verbose_name_plural = "Banqueteria"
-    
-    def __str__(self):
-        return self.items
-
-class Site(models.Model):
-    site = models.CharField(max_length=100, verbose_name="Recinto")
-    adress = models.CharField(max_length=200, verbose_name="Dirección")
-    capacity = models.PositiveIntegerField(verbose_name="Capacidad")
-    value = models.PositiveIntegerField(verbose_name="Valor")
-
-    class Meta:
-        verbose_name = "Recinto"
-        verbose_name_plural = "Recinto"
-
-    def __str__(self):
-        return self.site
-
-class Music(models.Model):
-    items = models.CharField(max_length=100,verbose_name="Musica")
-    value = models.PositiveIntegerField(verbose_name="Valor")
-
-    class Meta:
-            verbose_name = "Musica"
-            verbose_name_plural = "Musica"
-
-    def __str__(self):
-        return self.items
-
-class Toys(models.Model):
-    items = models.CharField(max_length=100, verbose_name="Juegos")
-    value = models.PositiveIntegerField(verbose_name="Valor")
-    class Meta:
-            verbose_name = "Juegos"
-            verbose_name_plural = "Juegos"
-
-    def __str__(self):
-        return self.items
-
-################ EVENTO PREDEFINIDO ################
-class EventTipe(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Tipo de evento")
-    banquetry = models.ForeignKey(Banquetry, related_name="Banqueteria", on_delete=models.CASCADE)
-    site = models.ForeignKey(Site, related_name="Recinto", on_delete=models.CASCADE)
-    music = models.ForeignKey(Music, related_name="Music", on_delete=models.CASCADE)
-    toys = models.ForeignKey(Toys, related_name="Juegos", on_delete=models.CASCADE, blank=True, null=True)
-    
-    class Meta:
-        verbose_name = "Evento predefinido"
-        verbose_name_plural = "Eventos predefinidos"
-
-    def __str__(self):
-        return self.name
 

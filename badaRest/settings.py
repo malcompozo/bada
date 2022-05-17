@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bada_app',
+    'default_event',
+    'contact',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken', 

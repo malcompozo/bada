@@ -7,6 +7,8 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('bada_app.api.urls')),
+    path('api/', include('default_event.api.urls')),
+    path('api/', include('contact.api.urls')),
     #path('api-auth/', include('rest_framework.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
