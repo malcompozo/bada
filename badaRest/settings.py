@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'bada_app',
     'default_event',
     'contact',
+    'slider',
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken', 

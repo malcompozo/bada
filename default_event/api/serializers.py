@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from default_event.models import Group, Banquetry, Site, Music, Toys, EventTipe
+from default_event.models import Group, Banquetry, Site, Music, Entertainment, EventTipe
 
 
 #############################  EVENTOS PREDEFINIDOS  #############################
@@ -23,9 +23,9 @@ class MusicSerializer(serializers.ModelSerializer):
         model = Music
         fields = "__all__"
 
-class ToysSerializer(serializers.ModelSerializer):
+class EntertainmentSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Toys
+        model = Entertainment
         fields = "__all__"
         
 class EventTipeSerializer(serializers.ModelSerializer):
@@ -33,7 +33,7 @@ class EventTipeSerializer(serializers.ModelSerializer):
     banquetry = BanquetrySerializer(read_only=True)
     site = SiteSerializer(read_only=True)
     music = MusicSerializer(read_only=True)
-    toys = ToysSerializer(read_only=True)
+    toys = EntertainmentSerializer(read_only=True)
 
     class Meta:
         model = EventTipe

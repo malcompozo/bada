@@ -47,12 +47,12 @@ class Music(models.Model):
     def __str__(self):
         return self.items
 
-class Toys(models.Model):
-    items = models.CharField(max_length=100, verbose_name="Juegos")
+class Entertainment(models.Model):
+    items = models.CharField(max_length=100, verbose_name="Entretenimiento")
     value = models.PositiveIntegerField(verbose_name="Valor")
     class Meta:
-            verbose_name = "Juegos"
-            verbose_name_plural = "Juegos"
+            verbose_name = "Entretenimiento"
+            verbose_name_plural = "Entretenimiento"
 
     def __str__(self):
         return self.items
@@ -61,10 +61,10 @@ class Toys(models.Model):
 class EventTipe(models.Model):
     name = models.CharField(max_length=100, verbose_name="Tipo de evento")
     group = models.ForeignKey(Group, verbose_name="Tipo de publico", on_delete=models.CASCADE, blank=True, null=True)
-    banquetry = models.ForeignKey(Banquetry, verbose_name="Banqueteria", on_delete=models.CASCADE)
+    banquetry = models.ForeignKey(Banquetry, verbose_name="Banqueteria", on_delete=models.CASCADE, blank=True, null=True)
     site = models.ForeignKey(Site, verbose_name="Recinto", on_delete=models.CASCADE)
     music = models.ForeignKey(Music, verbose_name="Musica", on_delete=models.CASCADE)
-    toys = models.ForeignKey(Toys, verbose_name="Juegos", on_delete=models.CASCADE, blank=True, null=True)
+    entertainment = models.ForeignKey(Entertainment, verbose_name="Entretenimiento", on_delete=models.CASCADE, blank=True, null=True)
     
     class Meta:
         verbose_name = "Evento predefinido"
