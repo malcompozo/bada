@@ -11,6 +11,12 @@ class SliderList(APIView):
         serializer = SliderSerializer(slider, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        serializer = SliderSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
     
 class SliderDetail(APIView):
@@ -19,12 +25,6 @@ class SliderDetail(APIView):
         serializer = SliderSerializer(slider)
         return Response(serializer.data)
 
-    def post(self, request):
-        serializer = SliderSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, pk):
         slider = self.get_object(pk)

@@ -19,12 +19,6 @@ class CustomerAV(APIView):
         serializer = CustomerSerializer(customer)
         return Response(serializer.data)
 
-    def post(self, request):
-        de_serializer = CustomerSerializer(data=request.data)
-        if de_serializer.is_valid():
-            de_serializer.save()
-            return Response(de_serializer.data, status=status.HTTP_201_CREATED)
-        return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CustomerListAV(APIView):
 
@@ -32,6 +26,13 @@ class CustomerListAV(APIView):
         customers = Customer.objects.all()
         serializer = CustomerSerializer(customers, many=True)
         return Response(serializer.data)
+
+    def post(self, request):
+        de_serializer = CustomerSerializer(data=request.data)
+        if de_serializer.is_valid():
+            de_serializer.save()
+            return Response(de_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 #############################  EVENT SAVED ID #############################
 class EventgetAV(APIView):

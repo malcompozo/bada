@@ -24,10 +24,10 @@ def send_email(name, email, message):
 #############################  CONTACT  #############################
 class ContactAV(APIView):
 
-    def get(self, request):
-        contacts = Contact.objects.all()
-        serializer = ContactSerializer(contacts, many=True)
-        return Response(serializer.data)
+    # def get(self, request):
+    #     contacts = Contact.objects.all()
+    #     serializer = ContactSerializer(contacts, many=True)
+    #     return Response(serializer.data)
 
     def post(self, request):
         de_serializer = ContactSerializer(data=request.data)

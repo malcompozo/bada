@@ -9,10 +9,10 @@ urlpatterns = [
     path('pevent/<int:pk>', PredefinedEventDetail.as_view(), name='predefenido-detalle'),
 
     # path subcampos
-    path('pevent/public', GroupAV.as_view(), name='tipo-publico'),
-    path('pevent/banquetry', BanquetryAV.as_view(), name='banqueteria'),
-    path('pevent/site', SiteAV.as_view(), name='lugar'),
-    path('pevent/music', MusicAV.as_view(), name='musica'),
-    path('pevent/toys', EntertainmentAV.as_view(), name='entretenimiento'),
+    path('pevent/public/', GroupAV.as_view(), name='tipo-publico'),
+    path('pevent/banquetry/', BanquetryAV.as_view(), name='banqueteria'),
+    path('pevent/site/', SiteAV.as_view(), name='lugar'),
+    path('pevent/music/', MusicAV.as_view(), name='musica'),
+    path('pevent/entertainment/', EntertainmentAV.as_view(), name='entretenimiento'),
 
 ]
