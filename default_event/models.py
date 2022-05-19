@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 ##################################  EVENTOS PREDEFINIDOS #################################
 class Group(models.Model):
-    items = models.CharField(max_length=100, verbose_name="Tipo de publico")
+    ages = models.CharField(max_length=100, verbose_name="Tipo de publico")
 
     class Meta:
         verbose_name = "Tipo de publico"
@@ -14,6 +14,10 @@ class Group(models.Model):
 
 class Banquetry(models.Model):
     items = models.CharField(max_length=100, verbose_name="Item")
+    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
+    image = models.ImageField(upload_to='banquetry/images', verbose_name="Imagen")
+    description = models.CharField(max_length=100, verbose_name="Descripción")
+    description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
 
     class Meta:
@@ -25,7 +29,9 @@ class Banquetry(models.Model):
 
 class Site(models.Model):
     site = models.CharField(max_length=100, verbose_name="Recinto")
-    adress = models.CharField(max_length=200, verbose_name="Dirección")
+    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
+    image = models.ImageField(upload_to='site/images', verbose_name="Imagen")
+    address = models.CharField(max_length=200, verbose_name="Dirección")
     capacity = models.PositiveIntegerField(verbose_name="Capacidad")
     value = models.PositiveIntegerField(verbose_name="Valor")
 
@@ -38,6 +44,10 @@ class Site(models.Model):
 
 class Music(models.Model):
     items = models.CharField(max_length=100,verbose_name="Musica")
+    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
+    image = models.ImageField(upload_to='music/images', verbose_name="Imagen")
+    description = models.CharField(max_length=100, verbose_name="Descripción")
+    description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
 
     class Meta:
@@ -49,6 +59,10 @@ class Music(models.Model):
 
 class Entertainment(models.Model):
     items = models.CharField(max_length=100, verbose_name="Entretenimiento")
+    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
+    image = models.ImageField(upload_to='entertainment/images', verbose_name="Imagen")
+    description = models.CharField(max_length=100, verbose_name="Descripción")
+    description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
     class Meta:
             verbose_name = "Entretenimiento"
@@ -60,10 +74,12 @@ class Entertainment(models.Model):
 ################ EVENTO PREDEFINIDO ################
 class EventTipe(models.Model):
     name = models.CharField(max_length=100, verbose_name="Tipo de evento")
+    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
+    image = models.ImageField(upload_to='event_tipe/images', verbose_name="Imagen")
     group = models.ForeignKey(Group, verbose_name="Tipo de publico", on_delete=models.CASCADE, blank=True, null=True)
     banquetry = models.ForeignKey(Banquetry, verbose_name="Banqueteria", on_delete=models.CASCADE, blank=True, null=True)
     site = models.ForeignKey(Site, verbose_name="Recinto", on_delete=models.CASCADE)
-    music = models.ForeignKey(Music, verbose_name="Musica", on_delete=models.CASCADE)
+    music = models.ForeignKey(Music, verbose_name="Musica", on_delete=models.CASCADE, blank=True, null=True)
     entertainment = models.ForeignKey(Entertainment, verbose_name="Entretenimiento", on_delete=models.CASCADE, blank=True, null=True)
     
     class Meta:

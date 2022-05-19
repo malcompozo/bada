@@ -2,14 +2,14 @@ from django.db import models
 import random
 
 
-############################### EVENT BOOKING ###############################
+############################### EVENT BOOKING ############################### auto_now=random.randint(0, 281474976710655),
 
 class EventBooking(models.Model):
-    search_id = models.CharField(max_length=100, default=random.randint(0, 281474976710655), editable=False, verbose_name='ID de busqueda') 
+    search_id = models.CharField(max_length=100, editable=False, verbose_name='ID de busqueda') 
     state = models.CharField(max_length=100,null=True, blank=True, verbose_name="Estado")
     booking_date = models.CharField(max_length=30, null=True, blank=True, verbose_name="fecha de reserva")
     site = models.CharField(max_length=50, null=True, blank=True, verbose_name="Recinto")
-    adress = models.CharField(max_length=200, verbose_name="Dirección")
+    address = models.CharField(max_length=200, verbose_name="Dirección")
     capacity = models.PositiveIntegerField(default=50, null=True, blank=True, verbose_name="Capacidad")
     banquetry = models.CharField(max_length=50, null=True, blank=True, verbose_name="Banqueteria")
     event_type = models.CharField(max_length=50, null=True, blank=True, verbose_name="Tipo de evento")
@@ -24,6 +24,10 @@ class EventBooking(models.Model):
         verbose_name = "Evento reservado"
         verbose_name_plural = "Eventos reservados"
         ordering = ['-created']
+
+    # def randomID(self):
+    #     self.search_id = random.randint(0, 281474976710655)
+    #     return self.search_id
 
     def __str__(self):
         return self.event_type     
