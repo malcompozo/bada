@@ -102,4 +102,4 @@ class EventType(models.Model):
         verbose_name_plural = "Eventos predefinidos"
 
     def __str__(self):
-        return self.name
+        return self.type
