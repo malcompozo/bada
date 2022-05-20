@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-(+kitdc@)qd3bi-#bqw&0%35$-#k^+c-c7l(i+b*my92t!@pz@
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -47,7 +47,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+
 
 ROOT_URLCONF = 'badaRest.urls'
 
