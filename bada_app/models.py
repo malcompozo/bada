@@ -3,9 +3,8 @@ import uuid
 
 
 ############################### EVENT BOOKING ############################### auto_now=random.randint(0, 281474976710655),
-
 class EventBooking(models.Model):
-    search_id = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=100, editable=False, verbose_name='ID de busqueda') 
+    search_id = models.UUIDField(primary_key=True, default=uuid.uuid4(), max_length=100, editable=False, verbose_name='ID de busqueda') 
     state = models.CharField(max_length=100,null=True, blank=True, verbose_name="Estado")
     booking_date = models.CharField(max_length=30, null=True, blank=True, verbose_name="fecha de reserva")
     site = models.CharField(max_length=50, null=True, blank=True, verbose_name="Recinto")
@@ -16,7 +15,7 @@ class EventBooking(models.Model):
     group = models.CharField(max_length=50, null=True, blank=True, verbose_name="Tipo de publico")
     music = models.CharField(max_length=100,verbose_name="Musica")
     entertainment = models.CharField(max_length=50, null=True, blank=True, verbose_name="Entretenimiento")
-    value = models.PositiveIntegerField(default=350000, null=True, blank=True, verbose_name="Total a pagar")
+    value = models.PositiveIntegerField(null=True, blank=True, verbose_name="Total a pagar")
 
     created = models.DateTimeField(auto_now_add=True, verbose_name="fecha de creación")
     updated = models.DateTimeField(auto_now=True, verbose_name="Ultima edición")
