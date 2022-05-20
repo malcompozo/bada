@@ -21,13 +21,13 @@ class SliderList(APIView):
     
 class SliderDetail(APIView):
     def get(self, request, pk):
-        slider = self.get_object(pk)
+        slider = self.get_object(pk=pk)
         serializer = SliderSerializer(slider)
         return Response(serializer.data)
 
 
     def put(self, request, pk):
-        slider = self.get_object(pk)
+        slider = self.get_object(pk=pk)
         serializer = SliderSerializer(slider, data=request.data)
         if serializer.is_valid():
             serializer.save()

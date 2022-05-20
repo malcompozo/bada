@@ -23,7 +23,7 @@ class PredefinedEventAV(APIView):
 #############################  DETAIL PREDEFINED EVENT #############################
 class PredefinedEventDetail(APIView):
     def get(self, request, pk):
-        predefinedEvent = self.get_object(pk)
+        predefinedEvent = self.get_object(pk=pk)
         serializer = EventTypeSerializer(predefinedEvent)
         return Response(serializer.data)
 
