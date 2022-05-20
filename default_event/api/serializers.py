@@ -36,7 +36,7 @@ class EntertainmentSerializer(serializers.ModelSerializer):
 class EventTypeSerializer(serializers.ModelSerializer):
     group = GroupSerializer(read_only=True)
     catering = CateringSerializer(read_only=True)
-    drinks = DrinksSerializers(many=True, read_only=True)
+    drinks = DrinksSerializers(read_only=True)
     site = SiteSerializer(read_only=True)
     music = MusicSerializer(read_only=True)
     entertainment = EntertainmentSerializer(read_only=True)
