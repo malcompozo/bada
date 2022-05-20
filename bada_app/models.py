@@ -1,11 +1,11 @@
 from django.db import models
-import random
+import uuid
 
 
 ############################### EVENT BOOKING ############################### auto_now=random.randint(0, 281474976710655),
 
 class EventBooking(models.Model):
-    search_id = models.CharField(max_length=100, editable=False, verbose_name='ID de busqueda') 
+    search_id = models.UUIDField(primary_key=True, default=uuid.uuid4, max_length=100, editable=False, verbose_name='ID de busqueda') 
     state = models.CharField(max_length=100,null=True, blank=True, verbose_name="Estado")
     booking_date = models.CharField(max_length=30, null=True, blank=True, verbose_name="fecha de reserva")
     site = models.CharField(max_length=50, null=True, blank=True, verbose_name="Recinto")

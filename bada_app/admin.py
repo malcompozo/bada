@@ -2,7 +2,7 @@ from django.contrib import admin
 from bada_app import models
 
 class EventAdmin (admin.ModelAdmin):
-    readonly_fields = ('created', 'updated', 'search_id')
+    readonly_fields = ('created', 'updated')
     list_display = ('state','site', 'search_id','created')
     search_fields = ('state', 'site')
 

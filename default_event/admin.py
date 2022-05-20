@@ -1,11 +1,19 @@
 from django.contrib import admin
 from default_event import models
 
+class EventAdmin (admin.ModelAdmin):
+    list_display = ('type','group','site','value')
+    search_fields = ('type','site')
+
+class GenericAdmin (admin.ModelAdmin):
+    list_display = ('items','value')
+    search_fields = ('items',)
+
 # Register your models here.
-admin.site.register(models.EventType)
+admin.site.register(models.EventType, EventAdmin)
 admin.site.register(models.Group)
-admin.site.register(models.Catering)
-admin.site.register(models.Drinks)
-admin.site.register(models.Site)
-admin.site.register(models.Music)
-admin.site.register(models.Entertainment)
+admin.site.register(models.Catering, GenericAdmin)
+admin.site.register(models.Drinks, GenericAdmin)
+admin.site.register(models.Site, GenericAdmin)
+admin.site.register(models.Music, GenericAdmin)
+admin.site.register(models.Entertainment, GenericAdmin)

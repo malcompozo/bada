@@ -42,7 +42,7 @@ class Drinks(models.Model):
         return self.items
 
 class Site(models.Model):
-    site = models.CharField(max_length=100, verbose_name="Recinto")
+    items = models.CharField(max_length=100, verbose_name="Recinto")
     urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
     image = models.ImageField(upload_to='site/images', verbose_name="Imagen")
     address = models.CharField(max_length=200, verbose_name="Dirección")
@@ -54,7 +54,7 @@ class Site(models.Model):
         verbose_name_plural = "Recinto"
 
     def __str__(self):
-        return self.site
+        return self.items
 
 class Music(models.Model):
     items = models.CharField(max_length=100,verbose_name="Musica")
