@@ -88,6 +88,7 @@ class Entertainment(models.Model):
 ################ EVENTO PREDEFINIDO ################
 class EventType(models.Model):
     type = models.CharField(max_length=100, verbose_name="Tipo de evento")
+    description = models.TextField(max_length=250 ,  verbose_name="Descripción")
     urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
     image = models.ImageField(upload_to='event_tipe/images', verbose_name="Imagen")
     group = models.ForeignKey(Group, verbose_name="Tipo de publico", on_delete=models.CASCADE, blank=True, null=True)
