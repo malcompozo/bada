@@ -10,12 +10,12 @@ class Group(models.Model):
         verbose_name_plural = "Tipo de publico"
     
     def __str__(self):
-        return self.items
+        return self.ages
 
-class Banquetry(models.Model):
-    items = models.CharField(max_length=100, verbose_name="Item")
+class Catering(models.Model):
+    items = models.CharField(max_length=100, verbose_name="Comida")
     urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='banquetry/images', verbose_name="Imagen")
+    image = models.ImageField(upload_to='catering/images', verbose_name="Imagen")
     description = models.CharField(max_length=100, verbose_name="Descripción")
     description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
@@ -24,6 +24,20 @@ class Banquetry(models.Model):
         verbose_name = "Banqueteria"
         verbose_name_plural = "Banqueteria"
     
+    def __str__(self):
+        return self.items
+
+class Drinks(models.Model):
+    items = models.CharField(max_length=100, verbose_name="Bebestible")
+    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
+    image = models.ImageField(upload_to='drinks/images', verbose_name="Imagen")
+    description = models.CharField(max_length=100, verbose_name="Descripción")
+    description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
+    value = models.PositiveIntegerField(verbose_name="Valor")
+    class Meta:
+            verbose_name = "Bebestible"
+            verbose_name_plural = "Bebestibles"
+
     def __str__(self):
         return self.items
 
@@ -72,16 +86,17 @@ class Entertainment(models.Model):
         return self.items
 
 ################ EVENTO PREDEFINIDO ################
-class EventTipe(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Tipo de evento")
+class EventType(models.Model):
+    type = models.CharField(max_length=100, verbose_name="Tipo de evento")
     urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
     image = models.ImageField(upload_to='event_tipe/images', verbose_name="Imagen")
     group = models.ForeignKey(Group, verbose_name="Tipo de publico", on_delete=models.CASCADE, blank=True, null=True)
-    banquetry = models.ForeignKey(Banquetry, verbose_name="Banqueteria", on_delete=models.CASCADE, blank=True, null=True)
+    catering = models.ForeignKey(Catering, verbose_name="Banqueteria", on_delete=models.CASCADE, blank=True, null=True)
+    drinks = models.ForeignKey(Drinks, verbose_name="Bebestible", on_delete=models.CASCADE, blank=True, null=True)
     site = models.ForeignKey(Site, verbose_name="Recinto", on_delete=models.CASCADE)
     music = models.ForeignKey(Music, verbose_name="Musica", on_delete=models.CASCADE, blank=True, null=True)
     entertainment = models.ForeignKey(Entertainment, verbose_name="Entretenimiento", on_delete=models.CASCADE, blank=True, null=True)
-    
+    value = models.PositiveIntegerField(verbose_name="Valor")
     class Meta:
         verbose_name = "Evento predefinido"
         verbose_name_plural = "Eventos predefinidos"

@@ -3,10 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework.views import APIView
 
-from default_event.models import EventTipe, Banquetry, Group, Site, Music, Entertainment
-from default_event.api.serializers import (EventTipeSerializer, 
+from default_event.models import EventType, Catering, Drinks, Group, Site, Music, Entertainment
+from default_event.api.serializers import (EventTypeSerializer, 
                                             GroupSerializer, 
-                                            BanquetrySerializer, 
+                                            CateringSerializer, 
+                                            DrinksSerializers,
                                             SiteSerializer, 
                                             MusicSerializer, 
                                             EntertainmentSerializer)
@@ -15,15 +16,15 @@ from default_event.api.serializers import (EventTipeSerializer,
 class PredefinedEventAV(APIView):
 
     def get(self, request):
-        predefinedEvent = EventTipe.objects.all()
-        serializer = EventTipeSerializer(predefinedEvent, many=True)
+        predefinedEvent = EventType.objects.all()
+        serializer = EventTypeSerializer(predefinedEvent, many=True)
         return Response(serializer.data)
 
 #############################  DETAIL PREDEFINED EVENT #############################
 class PredefinedEventDetail(APIView):
     def get(self, request, pk):
         predefinedEvent = self.get_object(pk)
-        serializer = EventTipeSerializer(predefinedEvent)
+        serializer = EventTypeSerializer(predefinedEvent)
         return Response(serializer.data)
 
 
@@ -34,10 +35,16 @@ class GroupAV(APIView):
         serializer = GroupSerializer(group, many=True)
         return Response(serializer.data)
 
-class BanquetryAV(APIView):
+class CateringAV(APIView):
     def get(self, request):
-        banquetry = Banquetry.objects.all()
-        serializer = BanquetrySerializer(banquetry, many=True)
+        catering = Catering.objects.all()
+        serializer = CateringSerializer(catering, many=True)
+        return Response(serializer.data)
+
+class DrinksAV(APIView):
+    def get(self, request):
+        drinks = Drinks.objects.all()
+        serializer = DrinksSerializers(drinks, many=True)
         return Response(serializer.data)
 
 class SiteAV(APIView):

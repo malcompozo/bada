@@ -1,5 +1,12 @@
 from django.urls import path
-from default_event.api.views import PredefinedEventAV,PredefinedEventDetail,GroupAV,BanquetryAV,SiteAV,MusicAV,EntertainmentAV
+from default_event.api.views import (PredefinedEventAV,
+                                    PredefinedEventDetail,
+                                    GroupAV,
+                                    CateringAV,
+                                    DrinksAV, 
+                                    SiteAV,
+                                    MusicAV,
+                                    EntertainmentAV)
 
 
 urlpatterns = [
@@ -10,7 +17,8 @@ urlpatterns = [
 
     # path subcampos
     path('pevent/public/', GroupAV.as_view(), name='tipo-publico'),
-    path('pevent/banquetry/', BanquetryAV.as_view(), name='banqueteria'),
+    path('pevent/catering/', CateringAV.as_view(), name='banqueteria'),
+    path('pevent/drinks/', DrinksAV.as_view(), name='bebidas'),
     path('pevent/site/', SiteAV.as_view(), name='lugar'),
     path('pevent/music/', MusicAV.as_view(), name='musica'),
     path('pevent/entertainment/', EntertainmentAV.as_view(), name='entretenimiento'),
