@@ -14,8 +14,7 @@ class Group(models.Model):
 
 class Catering(models.Model):
     items = models.CharField(max_length=100, verbose_name="Comida")
-    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='catering/images', verbose_name="Imagen")
+    urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     description = models.CharField(max_length=100, verbose_name="Descripción")
     description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
@@ -29,8 +28,7 @@ class Catering(models.Model):
 
 class Drinks(models.Model):
     items = models.CharField(max_length=100, verbose_name="Bebestible")
-    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='drinks/images', verbose_name="Imagen")
+    urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     description = models.CharField(max_length=100, verbose_name="Descripción")
     description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
@@ -43,8 +41,7 @@ class Drinks(models.Model):
 
 class Site(models.Model):
     items = models.CharField(max_length=100, verbose_name="Recinto")
-    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='site/images', verbose_name="Imagen")
+    urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     address = models.CharField(max_length=200, verbose_name="Dirección")
     capacity = models.PositiveIntegerField(verbose_name="Capacidad")
     value = models.PositiveIntegerField(verbose_name="Valor")
@@ -58,8 +55,7 @@ class Site(models.Model):
 
 class Music(models.Model):
     items = models.CharField(max_length=100,verbose_name="Musica")
-    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='music/images', verbose_name="Imagen")
+    urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     description = models.CharField(max_length=100, verbose_name="Descripción")
     description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
@@ -73,8 +69,7 @@ class Music(models.Model):
 
 class Entertainment(models.Model):
     items = models.CharField(max_length=100, verbose_name="Entretenimiento")
-    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='entertainment/images', verbose_name="Imagen")
+    urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     description = models.CharField(max_length=100, verbose_name="Descripción")
     description2 = models.CharField(max_length=100, verbose_name="Descripción2", blank=True, null=True)
     value = models.PositiveIntegerField(verbose_name="Valor")
@@ -89,8 +84,7 @@ class Entertainment(models.Model):
 class EventType(models.Model):
     type = models.CharField(max_length=100, verbose_name="Tipo de evento")
     description = models.TextField(max_length=250 ,  verbose_name="Descripción")
-    urlBase = models.CharField(verbose_name='API', max_length=200, default='https://badaeventos.herokuapp.com', editable=False)
-    image = models.ImageField(upload_to='event_tipe/images', verbose_name="Imagen")
+    urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     group = models.ForeignKey(Group, verbose_name="Tipo de publico", on_delete=models.CASCADE, blank=True, null=True)
     catering = models.ForeignKey(Catering, verbose_name="Banqueteria", on_delete=models.CASCADE, blank=True, null=True)
     drinks = models.ForeignKey(Drinks, verbose_name="Bebestible", on_delete=models.CASCADE, blank=True, null=True)

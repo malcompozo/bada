@@ -25,10 +25,6 @@ class EventBooking(models.Model):
         verbose_name_plural = "Eventos reservados"
         ordering = ['-created']
 
-    # def randomID(self):
-    #     self.search_id = random.randint(0, 281474976710655)
-    #     return self.search_id
-
     def __str__(self):
         return self.event_type     
 
