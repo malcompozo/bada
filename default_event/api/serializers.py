@@ -9,11 +9,13 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class CateringSerializer(serializers.ModelSerializer):
+    # AQUI AGREGAR RELACION DE TABLA
     class Meta:
         model = Catering
         fields = "__all__"
 
 class DrinksSerializers(serializers.ModelSerializer):
+    # AQUI AGREGAR RELACION DE TABLA
     class Meta:
         model = Drinks
         fields = "__all__"
@@ -29,17 +31,18 @@ class MusicSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class EntertainmentSerializer(serializers.ModelSerializer):
+    # AQUI AGREGAR RELACION DE TABLA
     class Meta:
         model = Entertainment
         fields = "__all__"
         
 class EventTypeSerializer(serializers.ModelSerializer):
     group = GroupSerializer(read_only=True)
-    catering = CateringSerializer(read_only=True)
-    drinks = DrinksSerializers(read_only=True)
     site = SiteSerializer(read_only=True)
     music = MusicSerializer(read_only=True)
-    entertainment = EntertainmentSerializer(read_only=True)
+    event_catering = CateringSerializer(many=True, read_only=True)
+    event_drinks = DrinksSerializers(many=True, read_only=True)
+    event_entertainment = EntertainmentSerializer(many=True, read_only=True)
 
     class Meta:
         model = EventType
