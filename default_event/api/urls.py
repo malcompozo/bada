@@ -1,26 +1,38 @@
-from django.urls import path
-from default_event.api.views import (PredefinedEventAV,
-                                    PredefinedEventDetail,
+from django.db import router
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from default_event.api.views import (PredefinedEventVS,
                                     GroupAV,
                                     CateringAV,
+                                    CateringList,
                                     DrinksAV, 
+                                    DrinksList,
                                     SiteAV,
                                     MusicAV,
-                                    EntertainmentAV)
+                                    EntertainmentAV,
+                                    EntertainmentList)
 
+router = DefaultRouter()
+router.register('p-event', PredefinedEventVS, basename='pevent')
 
 urlpatterns = [
 
     # path eventos predefinidos
-    path('pevent/', PredefinedEventAV.as_view(), name='predefinidos'),
-    path('pevent/<int:pk>', PredefinedEventDetail.as_view(), name='predefenido-detalle'),
+    path('', include(router.urls)),
 
     # path subcampos
-    path('pevent/public/', GroupAV.as_view(), name='tipo-publico'),
-    path('pevent/catering/', CateringAV.as_view(), name='banqueteria'),
-    path('pevent/drinks/', DrinksAV.as_view(), name='bebidas'),
-    path('pevent/site/', SiteAV.as_view(), name='lugar'),
-    path('pevent/music/', MusicAV.as_view(), name='musica'),
-    path('pevent/entertainment/', EntertainmentAV.as_view(), name='entretenimiento'),
+    path('event/public/', GroupAV.as_view(), name='tipo-publico'),
+    path('event/site/', SiteAV.as_view(), name='lugar'),
+    path('event/music/', MusicAV.as_view(), name='musica'),
+
+
+    path('event/<int:pk>/catering/', CateringAV.as_view(), name='banqueteria'), #GET ALL DETAIL PEVENT
+    path('event/catering/<int:pk>', CateringList.as_view(), name='banqueteria'), # GET, PUT CATERING
+
+    path('event/<int:pk>/drinks/', DrinksAV.as_view(), name='bebidas'), #GET ALL DETAIL PEVENT
+    path('event/drinks/<int:pk>', DrinksList.as_view(), name='bebidas'), #GET, PUT DRINKS
+
+    path('event/<int:pk>/entertainment/', EntertainmentAV.as_view(), name='entretenimiento'), #GET ALL DETAIL PEVENT
+    path('event/entertainment/<int:pk>', EntertainmentList.as_view(), name='entretenimiento'), #GET, PUT ENTERTAINMENT
 
 ]
