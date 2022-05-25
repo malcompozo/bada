@@ -21,18 +21,18 @@ urlpatterns = [
     path('', include(router.urls)),
 
     # path subcampos
-    path('event/public/', GroupAV.as_view(), name='tipo-publico'),
-    path('event/site/', SiteAV.as_view(), name='lugar'),
-    path('event/music/', MusicAV.as_view(), name='musica'),
+    path('pevent/public/', GroupAV.as_view(), name='tipo-publico'),
+    path('pevent/site/', SiteAV.as_view(), name='lugar'),
+    path('pevent/music/', MusicAV.as_view(), name='musica'),
 
 
-    path('event/<int:pk>/catering/', CateringAV.as_view(), name='banqueteria'), #GET ALL DETAIL PEVENT
-    path('event/catering/<int:pk>', CateringList.as_view(), name='banqueteria'), # GET, PUT CATERING
+    path('pevent/<int:pk>/catering/', CateringAV.as_view(), name='banqueteria'), #GET ALL DETAIL PEVENT
+    path('pevent/catering/<int:pk>', CateringList.as_view(), name='banqueteria'), # GET, PUT CATERING
 
-    path('event/<int:pk>/drinks/', DrinksAV.as_view(), name='bebidas'), #GET ALL DETAIL PEVENT
-    path('event/drinks/<int:pk>', DrinksList.as_view(), name='bebidas'), #GET, PUT DRINKS
+    path('pevent/<int:pk>/drinks/', DrinksAV.as_view(), name='bebidas'), #GET ALL DETAIL PEVENT
+    path('pevent/drinks/<int:pk>', DrinksList.as_view(), name='bebidas'), #GET, PUT DRINKS
 
-    path('event/<int:pk>/entertainment/', EntertainmentAV.as_view(), name='entretenimiento'), #GET ALL DETAIL PEVENT
-    path('event/entertainment/<int:pk>', EntertainmentList.as_view(), name='entretenimiento'), #GET, PUT ENTERTAINMENT
+    path('pevent/<int:pk>/entertainment/', EntertainmentAV.as_view(), name='entretenimiento'), #GET ALL DETAIL PEVENT
+    path('pevent/entertainment/<int:pk>', EntertainmentList.as_view(), name='entretenimiento'), #GET, PUT ENTERTAINMENT
 
 ]
