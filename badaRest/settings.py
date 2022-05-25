@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework.authtoken', 
+    'rest_framework_swagger',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -79,16 +81,16 @@ db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES = { 'default': dj_database_url.config() }
 
 REST_FRAMEWORK = {
-
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
     # token de autenticacion para el front
     # 'DEFAULT_AUTHENTICATION_CLASSES': [
     #    'rest_framework.authentication.TokenAuthentication',
     # ]
 
     #devuelve toda data en formato JSON
-    # 'DEFAULT_RENDERER_CLASSES': (
-    #     'rest_framework.renderers.JSONRenderer', 
-    # ) 
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer', 
+    ) 
 }
 
 
