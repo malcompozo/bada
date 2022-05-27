@@ -7,7 +7,7 @@ from django.urls import path, include
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('accaunt/', include('admin_user.api.urls')),
+    path('account/', include('admin_user.api.urls')),
     path('swagger/', include('swagger.api.urls')),
     path('api/', include('bada_app.api.urls')),
     path('api/', include('default_event.api.urls')),
