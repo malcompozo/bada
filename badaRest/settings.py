@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'slider',
     'corsheaders',
     'rest_framework',
+    'rest_framework_simplejwt',
     'rest_framework.authtoken', 
     'rest_framework_swagger',
     'drf_yasg',
@@ -82,15 +83,19 @@ DATABASES = { 'default': dj_database_url.config() }
 
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
-    # token de autenticacion para el front
-    # 'DEFAULT_AUTHENTICATION_CLASSES': [
-    #    'rest_framework.authentication.TokenAuthentication',
-    # ]
+    
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
 
     #devuelve toda data en formato JSON
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer', 
     ) 
+}
+
+SIMPLE_JWT = {
+    'ROTATE_REFRESH_TOKENS': True,
 }
 
 
@@ -152,7 +157,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 try:
-    from .local_settings import DATABASES, DEBUG
+    from .local_settings import DATABASES, DEBUG, REST_FRAMEWORK
 except ImportError as e:
     print('Error: ',e.msg)
 

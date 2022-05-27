@@ -3,14 +3,14 @@ from bada_app.api.serializers import CustomerSerializer,EventSerializer
 from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework.views import APIView
-from rest_framework.permissions import IsAuthenticated
+from badaRest.permissions import IsAdminOrReadOnly 
 
 
 
 
 #############################  CUSTOMER #############################
 class CustomerAV(APIView):
-
+    permission_classes = [IsAdminOrReadOnly]
     def get(self, request, pk):
         try:
             customer = Customer.objects.get(pk=pk)
@@ -22,7 +22,7 @@ class CustomerAV(APIView):
 
 
 class CustomerListAV(APIView):
-
+    permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
         customers = Customer.objects.all()
         serializer = CustomerSerializer(customers, many=True)
@@ -37,7 +37,7 @@ class CustomerListAV(APIView):
 
 #############################  EVENT SAVED ID #############################
 class EventgetAV(APIView):
-
+    permission_classes = [IsAdminOrReadOnly]
     def get(self, request, search_id):
         try:
             event = EventBooking.objects.get(search_id=search_id)
@@ -61,7 +61,7 @@ class EventgetAV(APIView):
 
 ############################# ALL EVENT SAVED  #############################
 class EventAV(APIView):
-
+    permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
         events = EventBooking.objects.all()
         serializer = EventSerializer(events, many=True)
