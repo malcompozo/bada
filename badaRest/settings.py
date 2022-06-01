@@ -1,5 +1,7 @@
+from datetime import timedelta
 import os
 from pathlib import Path
+from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
@@ -9,12 +11,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(+kitdc@)qd3bi-#bqw&0%35$-#k^+c-c7l(i+b*my92t!@pz@'
+SECRET_KEY = config('SECRET_KEY')
+
+# STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = config('DEBUG', cast=bool)
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
@@ -91,11 +98,15 @@ REST_FRAMEWORK = {
     #devuelve toda data en formato JSON
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer', 
-    ) 
+
+    ),
+
 }
 
 SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=30),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
 
@@ -164,6 +175,6 @@ except ImportError as e:
 
 # ENVIO EMAIL
 EMAIL_HOST = 'smtp.mailtrap.io'
-EMAIL_HOST_USER = '3c19d2e500b141'
-EMAIL_HOST_PASSWORD = 'd0db8029852955'
-EMAIL_PORT = '2525'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT', cast=int)

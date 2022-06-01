@@ -7,8 +7,7 @@ from badaRest.permissions import IsAdminOrReadOnly
 
 
 
-
-#############################  CUSTOMER #############################
+############################# CUSTOMER #############################
 class CustomerAV(APIView):
     permission_classes = [IsAdminOrReadOnly]
     def get(self, request, pk):
@@ -73,4 +72,8 @@ class EventAV(APIView):
             de_serializer.save()
             return Response(de_serializer.data, status=status.HTTP_201_CREATED)
         return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+############################# WEBPAY #############################
+
 
