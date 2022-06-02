@@ -7,7 +7,7 @@ A través de una API, los dos programas pueden comunicarse entre sí, intercambi
 
 # Despliegue
 API desplegada en servidor Heroku
-https://badaeventos.herokuapp.com/doc
-https://badaeventos.herokuapp.com/redoc
+https://badaeventos.herokuapp.com/swagger/doc
+https://badaeventos.herokuapp.com/swagger/redoc
 
 swagger donde se documenta cada endpoint y sus metodos correspondientes

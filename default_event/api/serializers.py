@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from default_event.models import Catering, Drinks, Site, Music, Entertainment, EventType
+from default_event.models import *
 
 
 #############################  EVENTOS PREDEFINIDOS  #############################
