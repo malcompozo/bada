@@ -93,7 +93,7 @@ class EventBooking(models.Model):
     state = models.CharField(max_length=100, verbose_name="Estado", null=True, blank=True)
     booking_date = models.CharField(max_length=30, verbose_name="fecha de reserva")
     event_type = models.CharField(max_length=50, verbose_name="Tipo de evento")
-    description = models.TextField(max_length=250 , verbose_name="Descripción")
+    description = models.TextField(max_length=250, verbose_name="Descripción")
     urlBase = models.URLField(max_length=500, verbose_name="URL de la imagen")
     people = models.PositiveIntegerField(verbose_name="Invitados")
     ##### FOREIGN KEY #####
