@@ -114,17 +114,7 @@ class EventBooking(models.Model):
 
     def __str__(self):
         return self.event_type   
-  
 
-class Imagen(models.Model):
-    imagen = models.ImageField(upload_to='imagenes', verbose_name="Imagen")
-
-    class Meta:
-        verbose_name = "Imagen"
-        verbose_name_plural = "Imagenes"
-
-    def __str__(self):
-        return self.imagen.url
 
 
 

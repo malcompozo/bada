@@ -46,10 +46,6 @@ class EventSerializer(serializers.ModelSerializer):
         model = EventBooking
         fields = "__all__"
 
-class ImagenSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Imagen
-        fields = "__all__"
 
 
 

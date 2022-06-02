@@ -20,7 +20,6 @@ admin.site.register(models.Site)
 admin.site.register(models.Music)
 admin.site.register(models.Entertainment)
 
-admin.site.register(models.Imagen)
 
 
 
