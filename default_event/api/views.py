@@ -4,9 +4,8 @@ from rest_framework import generics, status, viewsets
 from rest_framework.views import APIView
 from badaRest.permissions import IsAdminOrReadOnly 
 
-from default_event.models import EventType, Catering, Drinks, Group, Site, Music, Entertainment
+from default_event.models import EventType, Catering, Drinks, Site, Music, Entertainment
 from default_event.api.serializers import (EventTypeSerializer, 
-                                            GroupSerializer, 
                                             CateringSerializer, 
                                             DrinksSerializers,
                                             SiteSerializer, 
@@ -49,12 +48,6 @@ class PredefinedEventVS(viewsets.ViewSet):
 
 
 #############################  DETAIL ITEMS PREDEFINED EVENT #############################
-class GroupAV(APIView):
-    permission_classes = [IsAdminOrReadOnly]
-    def get(self, request):
-        group = Group.objects.all()
-        serializer = GroupSerializer(group, many=True)
-        return Response(serializer.data)
 
 class SiteAV(APIView):
     permission_classes = [IsAdminOrReadOnly]

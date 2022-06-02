@@ -1,12 +1,8 @@
 from rest_framework import serializers
-from default_event.models import Group, Catering, Drinks, Site, Music, Entertainment, EventType
+from default_event.models import Catering, Drinks, Site, Music, Entertainment, EventType
 
 
 #############################  EVENTOS PREDEFINIDOS  #############################
-class GroupSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Group
-        fields = "__all__"
 
 class CateringSerializer(serializers.ModelSerializer):
     # AQUI AGREGAR RELACION DE TABLA
@@ -37,7 +33,6 @@ class EntertainmentSerializer(serializers.ModelSerializer):
         fields = "__all__"
         
 class EventTypeSerializer(serializers.ModelSerializer):
-    group = GroupSerializer(read_only=True)
     site = SiteSerializer(read_only=True)
     music = MusicSerializer(read_only=True)
     event_catering = CateringSerializer(many=True, read_only=True)

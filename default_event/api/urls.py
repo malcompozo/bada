@@ -2,7 +2,6 @@ from django.db import router
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from default_event.api.views import (PredefinedEventVS,
-                                    GroupAV,
                                     CateringAV,
                                     CateringList,
                                     DrinksAV, 
@@ -21,7 +20,6 @@ urlpatterns = [
     path('', include(router.urls)),
 
     # path subcampos
-    path('pevent/public/', GroupAV.as_view(), name='tipo-publico'),
     path('pevent/site/', SiteAV.as_view(), name='lugar'),
     path('pevent/music/', MusicAV.as_view(), name='musica'),
 

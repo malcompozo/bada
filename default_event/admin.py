@@ -2,7 +2,7 @@ from django.contrib import admin
 from default_event import models
 
 class EventAdmin (admin.ModelAdmin):
-    list_display = ('type','group','site','value')
+    list_display = ('type','site','value')
     search_fields = ('type','site')
 
 class GenericAdmin (admin.ModelAdmin):
@@ -15,7 +15,6 @@ class TypeAdmin (admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(models.EventType, EventAdmin)
-admin.site.register(models.Group)
 admin.site.register(models.Catering, TypeAdmin)
 admin.site.register(models.Drinks, TypeAdmin)
 admin.site.register(models.Site, GenericAdmin)
