@@ -8,17 +8,12 @@ class EventAdmin (admin.ModelAdmin):
 
 class CustomerAdmin (admin.ModelAdmin):
     readonly_fields = ('created',)
-    list_display = ('name', 'last_name','created')
+    list_display = ('name', 'last_name','created', 'event_booking')
     search_fields = ('rut', 'email')    
 
 
 admin.site.register(models.EventBooking, EventAdmin)
 admin.site.register(models.Customer, CustomerAdmin)
-admin.site.register(models.Catering)
-admin.site.register(models.Drinks)
-admin.site.register(models.Site)
-admin.site.register(models.Music)
-admin.site.register(models.Entertainment)
 
 
 
