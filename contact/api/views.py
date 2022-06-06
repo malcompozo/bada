@@ -5,7 +5,7 @@ from rest_framework import status
 from rest_framework.views import APIView
 from django.core.mail import EmailMessage
 from badaRest.permissions import IsContactPermisions 
-
+from decouple import config
 
 #############################  EMAIL  #############################
 def send_email(name, email, message):
@@ -14,15 +14,15 @@ def send_email(name, email, message):
     correo = EmailMessage(
         "Bada Eventos: Nuevo mensaje de {}".format(email), # asunto
         "De {} \n \nCorreo <{}> \n \nEscribió: \n \n{} ".format(name, email, message), # cuerpo del mail
-        "no_contestar@badaeventos.cl", # email que emite
-        ["eventos@bada.cl"], # email de destino
+        "{}".format(email), # email que emite
+        [config('EMAIL_HOST_USER')], # email de destino
         reply_to=[email] # responder al email de forma dinamica
     )
     correo.send()
 
 #############################  CONTACT  #############################
 class ContactAV(APIView):
-    permission_classes = [IsContactPermisions]
+    #permission_classes = [IsContactPermisions]
     def get(self, request):
         contacts = Contact.objects.all()
         serializer = ContactSerializer(contacts, many=True)

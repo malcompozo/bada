@@ -16,4 +16,7 @@ urlpatterns = [
     path('customer/<int:pk>/', CustomerAV.as_view(), name='customer' ),
     path('customers/', CustomerListAV.as_view(), name='customers' ),
 
+    # path for mail
+    path('email/', MailAV.as_view(), name='email' ),
+
 ]

@@ -51,6 +51,19 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
+class Mailer(models.Model):
+    email = models.EmailField(max_length=100, verbose_name="Email")
+    search_id = models.CharField(max_length=200, verbose_name="ID de busqueda")
+    created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+
+    class Meta:
+        verbose_name = "Correo"
+        verbose_name_plural = "Correos"
+        ordering = ['-created']
+
+    def __str__(self):
+        return self.email
+
 
 
 

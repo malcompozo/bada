@@ -14,6 +14,7 @@ class CustomerAdmin (admin.ModelAdmin):
 
 admin.site.register(models.EventBooking, EventAdmin)
 admin.site.register(models.Customer, CustomerAdmin)
+admin.site.register(models.Mailer)
 
 
 

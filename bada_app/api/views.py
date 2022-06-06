@@ -5,7 +5,8 @@ from rest_framework import status, viewsets
 from rest_framework.views import APIView
 from badaRest.permissions import IsAdminOrReadOnly 
 from django.shortcuts import get_object_or_404
-
+from django.core.mail import EmailMessage
+from decouple import config
 
 
 ############################# CUSTOMER #############################
@@ -94,3 +95,34 @@ class EventAV(viewsets.ViewSet):
 
 
 ############################# WEBPAY #############################
+
+class MailAV(APIView):
+    def get(self, request):
+        customers = Mailer.objects.all()
+        serializer = MailerSerializers(customers, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        de_serializer = MailerSerializers(data=request.data)
+        if de_serializer.is_valid():
+
+            email = de_serializer.validated_data['email']
+            search_id = de_serializer.validated_data['search_id']
+
+            de_serializer.save()
+            #FUNCION DE CORREO AUTOMATICO
+
+            send_email(email, search_id)
+
+            return Response(de_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def send_email(email, search_id):
+    # envio de correo y redireccion
+    correo = EmailMessage(
+        "Bada Eventos: Nuevo mensaje", # asunto
+        "Estimado {}\n \n Su código de evento es: {}, \n \n Use este código para pagar o modificarel evento. \n \n Atte. equipo Bada Eventos.-".format(email, search_id), # cuerpo del mail
+        config('EMAIL_HOST_USER'), # email que emite
+        [email], # email de destino
+    )
+    correo.send()    

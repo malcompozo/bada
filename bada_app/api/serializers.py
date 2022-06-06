@@ -17,6 +17,11 @@ class CustomerSerializers(serializers.ModelSerializer):
         model = Customer
         fields = "__all__"
 
+class MailerSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Mailer
+        fields = "__all__"
+
 
 
 
