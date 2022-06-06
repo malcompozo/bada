@@ -31,7 +31,17 @@ class CustomerListAV(APIView):
 
     def post(self, request):
         de_serializer = CustomerSerializers(data=request.data)
+
+        name = de_serializer.validated_data['name']
+        email = de_serializer.validated_data['email']
+        created = de_serializer.validated_data['created']
+        event_booking = de_serializer.validated_data['event_booking']
+
+
         if de_serializer.is_valid():
+
+            send_compra(email,name,created,event_booking)
+
             de_serializer.save()
             return Response(de_serializer.data, status=status.HTTP_201_CREATED)
         return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -121,8 +131,18 @@ def send_email(email, search_id):
     # envio de correo y redireccion
     correo = EmailMessage(
         "Bada Eventos: Nuevo mensaje", # asunto
-        "Estimado {}\n \n Su código de evento es: {}, \n \n Use este código para pagar o modificarel evento. \n \n Atte. equipo Bada Eventos.-".format(email, search_id), # cuerpo del mail
+        "Estimado {}\n \n Su código de evento es: {}. \n \n Use este código para pagar o modificar el evento elegido. \n \n Atte. equipo Bada Eventos.-".format(email, search_id), # cuerpo del mail
         config('EMAIL_HOST_USER'), # email que emite
         [email], # email de destino
     )
     correo.send()    
+
+def send_compra(email,name,created,event_booking):
+    correo = EmailMessage(
+        "Bada Eventos: Reserva de evento", # asunto
+        "Estimado {}\n \n Su código de evento es: {}. \n \n Creado el día {} \n \n Atte. equipo Bada Eventos. \n \n Para mas información contacte al 999-999-99 .-".format(name, event_booking, created), # cuerpo del mail
+        config('EMAIL_HOST_USER'), # email que emite
+        [email], # email de destino
+    )    
+    correo.send()
+
