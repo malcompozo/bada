@@ -3,14 +3,15 @@
 
 ## Arquitectura
 ```
-Desarrollado en Angular como lenguaje Frontend, Python Django Rest Framework como lenguaje de backend, PostgreSQL como base de datos, todo esto desplegado en el servidor Heroku
+Desarrollado en Angular como lenguaje Frontend, Python Django Rest Framework como lenguaje de backend, 
+PostgreSQL como base de datos, todo esto desplegado en el servidor Heroku.
 ```
 
 ## Rest API
 ```
-Django REST Framework es un framework que nos permite el desarrollo de una API REST en Python. Este se comunicara con Angular (frontend).
+Django REST Framework es un framework que nos permite el desarrollo de una API REST en Python. 
 Las interfaces actúan como punto de acceso para otros programas. 
-A través de esta API, los dos programas pueden comunicarse entre sí, intercambiar datos y transferir comandos de texto por medio de formato JSON.
+A través de esta API, dos programas pueden comunicarse entre sí, intercambiar datos y transferir comandos de texto por medio de formato JSON.
 ```
 
 ## Despliegue
