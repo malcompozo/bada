@@ -1,4 +1,3 @@
-from tkinter import E
 from rest_framework import serializers
 from bada_app.models import *
 
