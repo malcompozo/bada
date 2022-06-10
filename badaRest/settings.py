@@ -13,9 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
-# STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
-# STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
-
+CLIENT_SECRET = config('CLIENT_SECRET') 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)

@@ -32,17 +32,13 @@ class CustomerListAV(APIView):
     def post(self, request):
         de_serializer = CustomerSerializers(data=request.data)
 
-        name = de_serializer.validated_data['name']
-        email = de_serializer.validated_data['email']
-        created = de_serializer.validated_data['created']
-        event_booking = de_serializer.validated_data['event_booking']
-
-
         if de_serializer.is_valid():
 
-            send_compra(email,name,created,event_booking)
+            name = de_serializer.validated_data['name']
+            email = de_serializer.validated_data['email']         
 
             de_serializer.save()
+            send_compra(email,name)
             return Response(de_serializer.data, status=status.HTTP_201_CREATED)
         return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -137,10 +133,10 @@ def send_email(email, search_id):
     )
     correo.send()    
 
-def send_compra(email,name,created,event_booking):
+def send_compra(email,name):
     correo = EmailMessage(
         "Bada Eventos: Reserva de evento", # asunto
-        "Estimado {}\n \n Su código de evento es: {}. \n \n Creado el día {} \n \n Atte. equipo Bada Eventos. \n \n Para mas información contacte al 999-999-99 .-".format(name, event_booking, created), # cuerpo del mail
+        "Estimado {}\n \n Su evento con ID. \n \n Creado el día \n \n Atte. equipo Bada Eventos. \n \n Para mas información contacte al 999-999-99 .-".format(name), # cuerpo del mail
         config('EMAIL_HOST_USER'), # email que emite
         [email], # email de destino
     )    

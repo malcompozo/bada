@@ -4,9 +4,8 @@ import uuid
 def rawID():
     return uuid.uuid4
 ############################### EVENT BOOKING ############################### 
-
 class EventBooking(models.Model):
-    search_id = models.UUIDField(primary_key=True, default=rawID(), max_length=100, editable=False, verbose_name='ID de busqueda') 
+    search_id = models.UUIDField(primary_key=True, default=rawID(), max_length=100, verbose_name='ID de busqueda', editable=False) 
     state = models.CharField(max_length=100, verbose_name="Estado")
     booking_date = models.CharField(max_length=30, verbose_name="fecha de reserva")
     event_type = models.CharField(max_length=50, verbose_name="Tipo de evento")
@@ -41,7 +40,7 @@ class Customer(models.Model):
     address = models.CharField(max_length=100, verbose_name="Dirección")
     city = models.CharField(max_length=100, verbose_name="Ciudad")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    event_booking = models.ForeignKey(EventBooking, verbose_name="Eventos reservados", on_delete=models.CASCADE)
+    event_booking = models.OneToOneField(EventBooking, related_name="evento_reservado", on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = "Cliente"
