@@ -3,8 +3,8 @@ from bada_app import models
 
 class EventAdmin (admin.ModelAdmin):
     readonly_fields = ('created', 'updated', 'search_id')
-    list_display = ('state','event_type', 'search_id','created')
-    search_fields = ('state', 'event_type')
+    list_display = ('event_type', 'search_id','created')
+    search_fields = ('event_type', 'search_id')
 
 class CustomerAdmin (admin.ModelAdmin):
     readonly_fields = ('created', 'event_booking')

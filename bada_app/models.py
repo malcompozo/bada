@@ -6,7 +6,6 @@ def rawID():
 ############################### EVENT BOOKING ############################### 
 class EventBooking(models.Model):
     search_id = models.UUIDField(primary_key=True, default=rawID(), max_length=100, verbose_name='ID de busqueda', editable=False) 
-    state = models.CharField(max_length=100, verbose_name="Estado")
     booking_date = models.CharField(max_length=30, verbose_name="fecha de reserva")
     event_type = models.CharField(max_length=50, verbose_name="Tipo de evento")
     description = models.TextField(max_length=250, verbose_name="Descripción")
@@ -40,6 +39,8 @@ class Customer(models.Model):
     address = models.CharField(max_length=100, verbose_name="Dirección")
     city = models.CharField(max_length=100, verbose_name="Ciudad")
     created = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
+    status = models.CharField(max_length=100, verbose_name="Estado del compra")
+    purchase_order = models.CharField(max_length=100, verbose_name="Orden de compra")
     event_booking = models.OneToOneField(EventBooking, related_name="evento_reservado", on_delete=models.CASCADE)
 
     class Meta:
