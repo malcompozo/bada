@@ -26,7 +26,7 @@ class EventBooking(models.Model):
         ordering = ['-created']
 
     def __str__(self):
-        return self.event_type   
+        return str(self.search_id) 
 
 
 ############################### CUSTOMERS ###############################

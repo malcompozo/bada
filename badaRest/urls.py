@@ -12,7 +12,6 @@ urlpatterns = [
     path('market/', include('bada_app.api.urls')),
     path('api/', include('default_event.api.urls')),
     path('api/', include('contact.api.urls')),
-    path('api/', include('slider.api.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # PERSONALIZAR ADMIN

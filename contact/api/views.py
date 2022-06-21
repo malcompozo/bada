@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework import status 
 from rest_framework.views import APIView
 from django.core.mail import EmailMessage
-from badaRest.permissions import IsContactPermisions 
 from decouple import config
 
 #############################  EMAIL  #############################
@@ -22,7 +21,6 @@ def send_email(name, email, message):
 
 #############################  CONTACT  #############################
 class ContactAV(APIView):
-    #permission_classes = [IsContactPermisions]
     def get(self, request):
         contacts = Contact.objects.all()
         serializer = ContactSerializer(contacts, many=True)

@@ -50,14 +50,12 @@ class PredefinedEventVS(viewsets.ViewSet):
 #############################  DETAIL ITEMS PREDEFINED EVENT #############################
 
 class SiteAV(APIView):
-    permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
         site = Site.objects.all()
         serializer = SiteSerializer(site, many=True)
         return Response(serializer.data)
 
 class MusicAV(APIView):
-    permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
         music = Music.objects.all()
         serializer = MusicSerializer(music, many=True)
