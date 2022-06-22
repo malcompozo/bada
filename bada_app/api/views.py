@@ -79,7 +79,7 @@ class CustomerListAV(APIView):
 
 #############################  EVENT SAVED ID #############################
 class EventgetAV(APIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     def get(self, request, search_id):
         try:
             event = EventBooking.objects.get(search_id=search_id)
@@ -104,7 +104,7 @@ class EventgetAV(APIView):
 ############################# ALL EVENT SAVED  #############################
 
 class EventAV(viewsets.ViewSet):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     def list(self, request):
         queryset = EventBooking.objects.all()
         serializer = EventSerializer(queryset, many=True)

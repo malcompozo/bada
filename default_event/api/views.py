@@ -15,7 +15,7 @@ from default_event.api.serializers import (EventTypeSerializer,
 #############################  LIST AND DETAIL PREDEFINED EVENT #############################
 
 class PredefinedEventVS(viewsets.ViewSet):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     def list(self, request):
         queryset = EventType.objects.all()
         serializer = EventTypeSerializer(queryset, many=True)
@@ -64,13 +64,13 @@ class MusicAV(APIView):
 #############################  DETAIL PREDEFINED EVENT FOR MODEL #############################
 
 class CateringAV(generics.ListCreateAPIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     serializer_class = CateringSerializer
     def get_queryset(self):
         return Catering.objects.filter(eventType=self.kwargs['pk'])
     
 class CateringList(APIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     def get(self, request, pk):
         catering = Catering.objects.filter(pk=pk)
         serializer = CateringSerializer(catering, many=True)
@@ -85,13 +85,13 @@ class CateringList(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class DrinksAV(generics.ListCreateAPIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     serializer_class = DrinksSerializers
     def get_queryset(self):
         return Drinks.objects.filter(eventType=self.kwargs['pk'])
 
 class DrinksList(APIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     def get(self, request, pk):
         drinks = Drinks.objects.filter(pk=pk)
         serializer = DrinksSerializers(drinks, many=True)
@@ -107,13 +107,13 @@ class DrinksList(APIView):
 
 
 class EntertainmentAV(generics.ListCreateAPIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     serializer_class = EntertainmentSerializer
     def get_queryset(self):
         return Entertainment.objects.filter(eventType=self.kwargs['pk'])
 
 class EntertainmentList(APIView):
-    permission_classes = [IsAdminOrReadOnly]
+    #permission_classes = [IsAdminOrReadOnly]
     def get(self, request, pk):
         entertainment = Entertainment.objects.filter(pk=pk)
         serializer = EntertainmentSerializer(entertainment, many=True)
