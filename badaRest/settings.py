@@ -1,24 +1,18 @@
+
+from ctypes import cast
 from datetime import timedelta
 import os
-from pathlib import Path
 from decouple import config, Csv
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool)
 
-
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 'https://bada-eventos.herokuapp.com']
-CORS_ORIGIN_ALLOW_ALL = True
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
+CORS_ALLOWED_ORIGINS  = config('CORS_ALLOWED_ORIGINS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Application definition
 
@@ -75,10 +69,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'badaRest.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 # BASE DE DATOS CLOUD
 import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
@@ -106,9 +96,6 @@ SIMPLE_JWT = {
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -125,20 +112,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
-
 LANGUAGE_CODE = 'es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Santiago'
 
 USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_TMP = os.path.join(BASE_DIR, 'static')
@@ -151,14 +132,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-#media config
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -168,8 +145,6 @@ try:
 except ImportError as e:
     print('Error: ',e.msg)
 
-
-# ENVIO EMAIL
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool)
