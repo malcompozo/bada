@@ -1,6 +1,5 @@
 import csv
 import datetime
-from tkinter import W
 from django.http import HttpResponse
 from bada_app.models import Customer, EventBooking
 from bada_app.api.serializers import *
