@@ -12,6 +12,9 @@ urlpatterns = [
     # path for event
     path('event/<int:search_id>/', EventgetAV.as_view(), name='event' ),
 
+    # path for CSV
+    path('csv/', CsvAV.as_view(), name='csv' ),
+
     # path for costumers
     path('customer/<int:pk>/', CustomerAV.as_view(), name='customer' ),
     path('customers/', CustomerListAV.as_view(), name='customers' ),

@@ -1,5 +1,19 @@
 # Proyecto de título analista programador computacional Duoc UC viña del mar.
+```
+# Backend desarrollado por: 
+    # Malcom Jonathan Pozo Espinoza
 
+# Frontend desarrollado por: 
+    # Nicolas Cañete
+    # Sebastian Caffi
+    # Jonathan Pacheco
+
+# Documentacion, facilitador de desarrollo: 
+    # Alain Maltrain
+
+# PROYECTO DE TITULO DE GRADO: Desarrollo de Aplicaciones Web
+# DUOC UC ESCUELA DE INFORMATICA Y TELECOMUNICACIONES, VIÑA DEL MAR 2022
+```
 
 ## Arquitectura
 ```

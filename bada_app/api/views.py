@@ -1,4 +1,7 @@
+import csv
 import datetime
+from tkinter import W
+from django.http import HttpResponse
 from bada_app.models import Customer, EventBooking
 from bada_app.api.serializers import *
 from rest_framework.response import Response
@@ -135,8 +138,7 @@ class EventAV(viewsets.ViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-############################# WEBPAY #############################
-
+############################# SEND EMAIL WITH SEARCH_ID FROM EVENTBOOKING ##############################
 class MailAV(APIView):
     def get(self, request):
         customers = Mailer.objects.all()
@@ -157,7 +159,54 @@ class MailAV(APIView):
             return Response(de_serializer.data, status=status.HTTP_201_CREATED)
         return Response(de_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+        
+############################# GENERATE CSV #############################
 
+class CsvAV(APIView):
+    permission_classes = [IsAdminOrReadOnly]
+    def get(self, request):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="Eventos_'+str(datetime.date.today())+'.csv"'
+
+        writer = csv.writer(response)
+
+        writer.writerow([   'NOMBRES', 
+                            'APELLIDOS', 
+                            'CORREO', 
+                            'TELEFONO', 
+                            'ORDEN_COMPRA', 
+                            'ID_RESERVA', 
+                            'RESERVA', 
+                            'EVENTO', 
+                            'INVITADOS', 
+                            'SITIO', 
+                            'MUSICA', 
+                            'BANQUETERIA', 
+                            'BEBIDAS', 
+                            'ENTRETENIMIENTO', 
+                            'VALOR'])
+
+        for customer in Customer.objects.all():
+            event = EventBooking.objects.get(search_id=str(customer.event_booking))
+            writer.writerow([   customer.name, 
+                                customer.last_name, 
+                                customer.email, 
+                                customer.phone, 
+                                customer.purchase_order, 
+                                customer.event_booking, 
+                                event.booking_date, 
+                                event.event_type, 
+                                event.people, 
+                                event.site, 
+                                event.music, 
+                                event.catering, 
+                                event.drinks, 
+                                event.entertainment, 
+                                event.value])
+            return response
+
+
+############################# Generate automatic emails #############################
 
 def send_email(email, search_id):
     html_tpl_path = 'mail/search_id.html'
@@ -175,8 +224,6 @@ def send_email(email, search_id):
     correo.send()
     
 
-
-# ,event_type,people,site,music,catering,drinks,entertainment,value
 def send_compra(email, 
                 complete_name, 
                 search_id, 
