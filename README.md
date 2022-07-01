@@ -4,12 +4,12 @@
     # Malcom Jonathan Pozo Espinoza
 
 # Frontend desarrollado por: 
-    # Nicolas Cañete
-    # Sebastian Caffi
-    # Jonathan Pacheco
+    # Nicolas Alexis Cañete Berna
+    # Sebastian Alejandro Caffi Pereira
+    # Jonathan Pacheco Rubio
 
 # Documentacion, facilitador de desarrollo: 
-    # Alain Maltrain
+    # Alain Christian Maltrain Valdivieso
 
 # PROYECTO DE TITULO DE GRADO: Desarrollo de Aplicaciones Web
 # DUOC UC ESCUELA DE INFORMATICA Y TELECOMUNICACIONES, VIÑA DEL MAR 2022

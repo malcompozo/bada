@@ -1,5 +1,8 @@
+from ast import Str
 import csv
 import datetime
+from io import StringIO
+from tokenize import String
 from django.http import HttpResponse
 from bada_app.models import Customer, EventBooking
 from bada_app.api.serializers import *
@@ -162,10 +165,13 @@ class MailAV(APIView):
 class CsvAV(APIView):
     permission_classes = [IsAdminOrReadOnly]
     def get(self, request):
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="Eventos_'+str(datetime.date.today())+'.csv"'
+        # response = HttpResponse(content_type='text/csv')
+        # response['Content-Disposition'] = 'attachment; '
+        
+        csvfile = StringIO()
+        writer = csv.writer(csvfile)
+        filename = '"Eventos_'+str(datetime.date.today())+'.csv"'
 
-        writer = csv.writer(response)
 
         writer.writerow([   'NOMBRES', 
                             'APELLIDOS', 
@@ -200,7 +206,22 @@ class CsvAV(APIView):
                                 event.drinks, 
                                 event.entertainment, 
                                 event.value])
-            return response
+        try:
+            correo = EmailMessage(
+                "Bada Eventos: Registro de evento", #ASUNTO
+                "Genera registros historicos de eventos hasta la fecha.", #CUERPO
+                config('EMAIL_HOST_USER'), #EMITE
+                [config('EMAIL_HOST_USER')], #DESTINO
+            )   
+
+            correo.attach(filename,csvfile.getvalue().encode('utf-8'),'text/csv')
+            correo.send()
+            return Response("Correo enviado exitosamente", status=status.HTTP_200_OK)
+        except Exception as error:
+            return Response("Error al enviar correo: "+error, status=status.HTTP_400_BAD_REQUEST)
+
+
+
 
 
 ############################# Generate automatic emails #############################
